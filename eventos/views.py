@@ -1,4 +1,4 @@
-from django.shortcuts import render
+from django.shortcuts import render,get_object_or_404, redirect
 from .models import evento
 
 # Create your views here. 
@@ -27,5 +27,38 @@ def home(request):
     # }
     return render(request, 'home.html', data)
 
+#busqueda de producto
+def buscar(request):
+    nombre = request.POST.get('nombre', '')
+
+    print(nombre)
+
+    if nombre:
+        listado_eventos = evento.objects.filter(nombre__icontains=nombre).order_by('fecha_Inicio')
+    else:
+        listado_eventos = evento.objects.all().order_by('fecha_Inicio')
+
+    data = {
+        'title': 'Eventos encontrados ...',
+        'listado': listado_eventos,
+    }    
+    return render(request, 'home.html', data)
+
+
 def about(request):
     return render(request, 'about.html')
+
+def detalle(request, id=None):
+    #objproducto = get_object_or_404(Producto, pk=id)
+    if id is None:
+        return redirect('home')
+    
+    listado_eventos = get_object_or_404(evento, pk=id) 
+
+    
+    data = {
+        'title': 'Detalle del evento',
+        'listado': listado_eventos,
+    }   
+
+    return render(request, 'detalle.html', data)

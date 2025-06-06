@@ -1,0 +1,9 @@
+{% extends "layout/base.html" %}
+{% block body %}
+
+    <h1>Detalle evento: {{ listado.nombre }}</h1>
+    <p>Fecha de inicio: {{ listado.fecha_Inicio|date:"d/m/Y" }}</p>
+    
+    <p>This is a simple event management application built with Django.</p>
+    
+{% endblock %}

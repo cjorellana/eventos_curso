@@ -4,7 +4,7 @@ from .models import evento
 
 @admin.register(evento)
 class EventoAdmin(admin.ModelAdmin):
-    list_display = ('ID', 'nombre', 'fecha_Inicio', 'fecha_fin', 'precio', 'diploma', 'activo')
+    list_display = ('nombre', 'fecha_Inicio', 'fecha_fin', 'precio', 'diploma', 'activo')
     search_fields = ('nombre',)
     list_filter = ('activo', 'diploma')
     ordering = ('-fecha_Inicio',)

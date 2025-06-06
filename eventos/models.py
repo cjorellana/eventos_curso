@@ -2,8 +2,7 @@ from django.db import models
 from django.utils import timezone
 
 # Create your models here.
-class evento(models.Model):
-    ID = models.AutoField(primary_key=True)
+class evento(models.Model):    
     nombre = models.CharField(max_length=100)
     fecha_Asig = models.DateField()
     fecha_Inicio = models.DateField(default=timezone.now)
