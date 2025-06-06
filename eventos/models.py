@@ -15,6 +15,7 @@ class evento(models.Model):
     description = models.TextField(blank=True, null=True)
     created_at = models.DateTimeField(default=timezone.now)
     updated_at = models.DateTimeField(auto_now=True)
+    image = models.ImageField(upload_to='images/',null=True)
 
     def str(self):
        return self.nombre

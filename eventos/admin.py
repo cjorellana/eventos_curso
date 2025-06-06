@@ -23,4 +23,7 @@ class EventoAdmin(admin.ModelAdmin):
         ('Configuración', {
             'fields': ('diploma', 'activo')
         }),
+        ('Multimedia', {
+            'fields': ('image',)
+        }),
     )
