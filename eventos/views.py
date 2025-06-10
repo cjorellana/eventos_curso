@@ -48,6 +48,9 @@ def buscar(request):
 def about(request):
     return render(request, 'about.html')
 
+def contacto(request):
+    return render(request, 'contacto.html')
+
 def detalle(request, id=None):
     #objproducto = get_object_or_404(Producto, pk=id)
     if id is None:

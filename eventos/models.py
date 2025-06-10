@@ -18,3 +18,20 @@ class evento(models.Model):
 
     def str(self):
        return self.nombre
+    
+
+tipo_contacto = [
+    (1, 'No puedo Entrar'),
+    (2, 'No aparece mi Evento'),
+    (3, 'Otros')
+]
+
+class Contacto(models.Model):
+    nombre = models.CharField(max_length=100)
+    correo = models.EmailField()
+    tipo = models.IntegerField(choices=tipo_contacto)
+    mensaje = models.TextField()
+    created_at = models.DateTimeField(default=timezone.now)
+    
+    def __str__(self):
+        return self.nombre
