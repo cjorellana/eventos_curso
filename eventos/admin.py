@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import evento
+from .models import evento,Contacto
 # Register your models here.
 
 @admin.register(evento)
@@ -27,3 +27,5 @@ class EventoAdmin(admin.ModelAdmin):
             'fields': ('image',)
         }),
     )
+
+admin.site.register(Contacto)

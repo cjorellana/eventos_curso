@@ -1,5 +1,6 @@
 from django.shortcuts import render,get_object_or_404, redirect
-from .models import evento
+from .models import evento,Contacto
+from django.contrib import messages
 
 # Create your views here. 
 def home(request):
@@ -48,7 +49,36 @@ def buscar(request):
 def about(request):
     return render(request, 'about.html')
 
+
+
 def contacto(request):
+    if request.method == 'POST':
+        nombre = request.POST.get('nombre', '')
+        correo = request.POST.get('email', '')
+        mensaje = request.POST.get('mensaje', '')
+        tipo = request.POST.get('tipo', '1')
+
+       
+
+        try:
+             # Validar los datos del formulario
+            if not nombre:
+                messages.error(request, 'Debes ingresar tu nombre.')
+            else:
+                contacto = Contacto(nombre=nombre, correo=correo, mensaje=mensaje, tipo=tipo)
+                contacto.save()   
+                messages.success(request, 'Se guardó el reporte correctamente.')
+        except Exception as e:
+            messages.error(request, f'Error al guardar el Reporte: {e}')
+
+        # Aquí podrías procesar el formulario, como enviar un correo electrónico o guardar en la base de datos
+        #print(f'Nombre: {nombre}, Email: {email}, Mensaje: {mensaje}')
+        #guardar en la base de datos o enviar un correo electrónico
+    
+
+        # Redirigir a una página de agradecimiento o mostrar un mensaje de éxito
+        #return redirect('home')
+
     return render(request, 'contacto.html')
 
 def detalle(request, id=None):
