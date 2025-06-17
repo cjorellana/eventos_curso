@@ -1,8 +1,6 @@
 {% extends "layout/base.html" %}
 {% block body %}
 
-
-
     <div class="card shadow-lg w-75 mx-auto mt-3">
         <div class="card-header">
             <h3 class="text-center">Formulario de Contacto</h3>
@@ -15,17 +13,17 @@
                 return !this.error;
             } 
         }">
-            <form method="post" action="{% url 'contacto' %}">
+        <form method="post" action="{% url 'contacto' %}">
                 {% csrf_token %}
                 <div class="mb-3">
                     <label for="nombre" class="form-label">Nombre</label>
                     <input 
-            type="text" 
-            class="form-control" 
-            id="nombre" 
-            x-model="nombre"
-            x-bind:class="{ 'is-invalid': error }"
-            @blur="validar()">
+                    type="text" 
+                    class="form-control" 
+                    id="nombre" 
+                    x-model="nombre"
+                    x-bind:class="{ 'is-invalid': error }"
+                    @blur="validar()">
         
         <div class="invalid-feedback" x-show="error">
             El nombre no puede estar en blanco
